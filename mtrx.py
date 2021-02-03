@@ -2,7 +2,10 @@ import argparse
 
 class Matrix:
     def __init__(self, width=0, height=0):
-        self.representation = [[]]
+        if width !=0 and height !=0:
+            self.representation = [[0 for x in range(width)] for y in range(height)] #pripravi pole v danem rozmezi, zamezi sahnuti mimo
+        else:
+            self.representation = []
         self.width = width
         self.height = height
     
@@ -16,7 +19,7 @@ class Matrix:
         except PermissionError: # zjistuje pristup k souboru
             print(f"CHYBA: Nemam pristup k {input_name}.Program skonci.")
             exit()
-        except ValueError as e: # validuje i pokud se jedna o validni JSON
+        except ValueError as e: # validuje i pokud se jedna o validni soubor
             print(f"CHYBA: Soubor {input_name} neni validni. Program skonci.\n", e)
             exit()
 
@@ -33,5 +36,9 @@ class Matrix:
                exit()
            self.representation.append(arrLine)
            self.height = self.height+1
+
+    def save(self, output_file_name):
+        
+
 
 

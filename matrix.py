@@ -2,15 +2,18 @@ import argparse
 from mtrx import Matrix
 
 def matrix_multiply(matrix1, matrix2):
-    result = Matrix()
+    if matrix1.width != matrix2.height:
+        print("Nasobeni zadanych matic neni definovane.")
+        exit()
+
+    result = Matrix(matrix1.width, matrix2.height)
     
-    for row_m1 in range(len(matrix1.representation)):
-        for row_m2 in range(len(matrix2.representation)):
-            coo1 = matrix1.representation[row_m1][row_m2]
-            coo2 = matrix2.representation[row_m2][row_m1]
-            co_res =  int(coo1)*int(coo2)
-            result.representation[row_m2][row_m1] = co_res
-    print("hovno")
+    for row_m1 in range(matrix1.height):
+        for row_m2 in range(matrix2.width):
+            for column_m2 in range(matrix2.height):
+
+                result.representation[row_m1][row_m2] += (int(matrix1.representation[row_m1][column_m2])) * (int(matrix2.representation[column_m2][row_m2]))
+    return result
 
 parser = argparse.ArgumentParser()
 parser.add_argument('-a', '--matrix1', required=False, default=None)
