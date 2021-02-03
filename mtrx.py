@@ -38,7 +38,15 @@ class Matrix:
            self.height = self.height+1
 
     def save(self, output_file_name):
-        
-
-
-
+        try:
+            with open(output_file_name, "w", encoding="UTF-8") as physicFile:
+                for row in self.representation:
+                    row_str = ""
+                    for col in row:
+                        if row_str == "":
+                            row_str=col
+                        else:
+                            row_str += "" + col
+                    physicFile.write(row_str)
+        except:
+            exit()
