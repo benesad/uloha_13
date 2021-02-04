@@ -9,9 +9,9 @@ def matrix_multiply(matrix1, matrix2):
     result = Matrix(matrix2.width, matrix1.height)
     
     for row_m1 in range(matrix1.height):
-        for row_m2 in range(matrix2.width):
-            for column_m2 in range(matrix2.height):
-                result.representation[row_m1][row_m2] += (int(matrix1.representation[row_m1][column_m2])) * (int(matrix2.representation[column_m2][row_m2]))
+        for col_m2 in range(matrix2.width):
+            for row_m2 in range(matrix2.height):
+                result.representation[row_m1][col_m2] += (int(matrix1.representation[row_m1][row_m2])) * (int(matrix2.representation[row_m2][col_m2]))
     return result
 
 parser = argparse.ArgumentParser()

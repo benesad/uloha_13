@@ -40,13 +40,21 @@ class Matrix:
     def save(self, output_file_name):
         try:
             with open(output_file_name, "w", encoding="UTF-8") as physicFile:
-                for row in self.representation:
+                for row_index in range(self.height):
                     row_str = ""
-                    for col in row:
+                    for col in self.representation[row_index]:
                         if row_str == "":
-                            row_str=col
+                            row_str=str(col)
                         else:
-                            row_str += "" + col
+                            row_str += " " + str(col)
+
+                    if row_index!=self.height-1:
+                        row_str += '\n'
+
                     physicFile.write(row_str)
+        except PermissionError:
+            print(f"CHYBA: Nemuzu ulozit vysledny soubor, protoze nemam pristup k ukladani.")
+            exit()
         except:
+            print("CHYBA: Vysledny soubor se mi nepodarilo ulozit.")
             exit()
