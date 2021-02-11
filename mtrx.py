@@ -3,7 +3,7 @@ import argparse
 class Matrix:
     def __init__(self, width=0, height=0):
         if width !=0 and height !=0:
-            self.representation = [[0 for x in range(width)] for y in range(height)] #pripravi pole v danem rozmezi, zamezi sahnuti mimo
+            self.representation = [[0 for x in range(width)] for y in range(height)] #pripravi pole v danem rozmezi, zamezi sahnuti mimo      make an empty list in given range
         else:
             self.representation = []
         self.width = width
@@ -13,13 +13,13 @@ class Matrix:
         try:
             with open(input_name, "r", encoding="UTF-8") as physicFile:
                 self.parse(physicFile.read().splitlines())
-        except FileNotFoundError: # zjistuje, zda existuje
+        except FileNotFoundError: # try to find out if file exists
             print(f"CHYBA: Pozadovany soubor {input_name} neexistuje. Program skonci.")
             exit()
-        except PermissionError: # zjistuje pristup k souboru
+        except PermissionError: # try to find out if it have an acces
             print(f"CHYBA: Nemam pristup k {input_name}.Program skonci.")
             exit()
-        except ValueError as e: # validuje i pokud se jedna o validni soubor
+        except ValueError as e: # try to validate even if its valid
             print(f"CHYBA: Soubor {input_name} neni validni. Program skonci.\n", e)
             exit()
 

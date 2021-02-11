@@ -1,32 +1,32 @@
 import argparse
 from mtrx import Matrix
 
-def matrix_multiply(matrix1, matrix2):
-    if matrix1.width != matrix2.height:
+def matrix_multiply(A, B):
+    if A.width != B.height:
         print("Nasobeni zadanych matic neni definovane.")
         exit()
 
-    result = Matrix(matrix2.width, matrix1.height)
+    C = Matrix(B.width, A.height)
     
-    for row_m1 in range(matrix1.height):
-        for col_m2 in range(matrix2.width):
-            for row_m2 in range(matrix2.height):
-                result.representation[row_m1][col_m2] += (int(matrix1.representation[row_m1][row_m2])) * (int(matrix2.representation[row_m2][col_m2]))
-    return result
+    for row_A in range(A.height):
+        for col_B in range(B.width):
+            for row_B in range(A.height):
+                C.representation[row_A][col_B] += (float(A.representation[row_A][row_B])) * (float(B.representation[row_B][col_B]))
+    return C
 
 parser = argparse.ArgumentParser()
-parser.add_argument('-a', '--matrix1', required=False, default=None)
-parser.add_argument('-b', '--matrix2', required=False, default=None)
+parser.add_argument('-a', '--A', required=False, default=None)
+parser.add_argument('-b', '--B', required=False, default=None)
 parser.add_argument('-o', '--output', required=False, default=None)
 args = parser.parse_args()
-if args.matrix1 != None and args.matrix2 != None and args.output != None:
-    matrix1 = Matrix()
-    matrix2 = Matrix()
-    matrix1.read(args.matrix1)
-    matrix2.read(args.matrix2)
-    matrix_multiply(matrix1, matrix2)
-    result_matrix = matrix_multiply(matrix1, matrix2)
-    result_matrix.save(args.output)
+if args.A != None and args.B != None and args.output != None:
+    A = Matrix()
+    B = Matrix()
+    A.read(args.A)
+    B.read(args.B)
+    matrix_multiply(A, B)
+    C = matrix_multiply(A, B)
+    C.save(args.output)
 
 else:
     print("Nezadali jste povinne argumenty (-a,b pro vstupni matice, -o pro vystupni soubor.")
