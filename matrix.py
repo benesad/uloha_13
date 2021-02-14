@@ -1,7 +1,8 @@
 import argparse
 from mtrx import Matrix
 
-def matrix_multiply(A, B):
+#function that multiplies given matricies
+def matrix_multiply(A, B): 
     if A.width != B.height:
         print("Nasobeni zadanych matic neni definovane.")
         exit()
@@ -15,9 +16,9 @@ def matrix_multiply(A, B):
     return C
 
 parser = argparse.ArgumentParser()
-parser.add_argument('-a', '--A', required=False, default=None)
-parser.add_argument('-b', '--B', required=False, default=None)
-parser.add_argument('-o', '--output', required=False, default=None)
+parser.add_argument('-a', '--A', required=False, default=None) # input file as an argument
+parser.add_argument('-b', '--B', required=False, default=None) # input file as an argument
+parser.add_argument('-o', '--output', required=False, default=None) # output file as an argument
 args = parser.parse_args()
 if args.A != None and args.B != None and args.output != None:
     A = Matrix()

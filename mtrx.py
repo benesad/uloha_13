@@ -3,7 +3,7 @@ import argparse
 class Matrix:
     def __init__(self, width=0, height=0):
         if width !=0 and height !=0:
-            self.representation = [[0 for x in range(width)] for y in range(height)] #pripravi pole v danem rozmezi, zamezi sahnuti mimo      make an empty list in given range
+            self.representation = [[0 for x in range(width)] for y in range(height)] # make an empty list in given range
         else:
             self.representation = []
         self.width = width
@@ -46,7 +46,7 @@ class Matrix:
                         if row_str == "":
                             row_str=str(col)
                         else:
-                            row_str += " " + str(col)
+                            row_str += " " + str(col)  # give space between two numbers in a row
 
                     if row_index!=self.height-1:
                         row_str += '\n'
